@@ -38,7 +38,7 @@ func NewFTPClient(ip, accessCode, username string, port int, timeout time.Durati
 }
 
 func (c *FTPClient) withConn(fn func(*ftp.ServerConn) error) error {
-	conn, err := ftp.DialWithTLS(c.addr, c.tlsConfig, ftp.DialWithTimeout(c.timeout))
+	conn, err := ftp.Dial(c.addr, ftp.DialWithTimeout(c.timeout), ftp.DialWithTLS(c.tlsConfig))
 	if err != nil {
 		return err
 	}
