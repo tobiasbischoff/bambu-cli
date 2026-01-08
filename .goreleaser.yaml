@@ -1,0 +1,48 @@
+project_name: bambu-cli
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: bambu-cli
+    main: ./cmd/bambu-cli
+    binary: bambu-cli
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: default
+    format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - README.md
+
+checksum:
+  name_template: "checksums.txt"
+
+brews:
+  - name: bambu-cli
+    homepage: https://github.com/tobiasbischoff/bambu-cli
+    description: CLI for controlling BambuLab printers directly over MQTT/FTPS/camera.
+    repository:
+      owner: tobiasbischoff
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.GORELEASER_TOKEN }}"
+    folder: Formula
+    test: |
+      system "#{bin}/bambu-cli", "--help"
+
+release:
+  github:
+    owner: tobiasbischoff
+    name: bambu-cli

@@ -8,6 +8,12 @@ CLI for controlling BambuLab printers directly over MQTT/FTPS/camera.
 go build -o bambu-cli ./cmd/bambu-cli
 ```
 
+## Install (Homebrew)
+
+```bash
+brew install tobiasbischoff/tap/bambu-cli
+```
+
 ## Quick start
 
 ```bash
