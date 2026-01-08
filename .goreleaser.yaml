@@ -39,7 +39,7 @@ brews:
       name: homebrew-tap
       branch: main
       token: "{{ .Env.GORELEASER_TOKEN }}"
-    folder: Formula
+    directory: Formula
     test: |
       system "#{bin}/bambu-cli", "--help"
 
