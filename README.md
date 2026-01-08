@@ -37,6 +37,18 @@ bambu-cli print start ./benchy.3mf --plate 1
 - Project config: `./.bambu.json`
 - Precedence: flags > env > project config > user config
 
+### Access code
+
+Get the printer access code from the device or Bambu Studio, then store it in a file:
+
+```bash
+mkdir -p ~/.config/bambu
+printf "%s" "YOUR_ACCESS_CODE" > ~/.config/bambu/lab.code
+chmod 600 ~/.config/bambu/lab.code
+```
+
+In Bambu Studio on macOS: open the Device view for your printer, open its settings, and look for "LAN Access" or "Access Code" (often shown alongside IP/serial details).
+
 ### Env vars
 
 - `BAMBU_PROFILE`
